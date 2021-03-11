@@ -1,6 +1,6 @@
 ---
 title: "STAT270 - Project 2 - Classical Probability and Statistics Problems and Bootstrap Estimation"
-author: "YOUR GROUP # LIST of studends who worked"
+author: "GROUP 4"
 date: "`r Sys.Date()`"
 output: html_notebook
 ---
