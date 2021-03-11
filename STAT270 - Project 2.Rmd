@@ -1,0 +1,493 @@
+---
+title: "STAT270 - Project 2 - Classical Probability and Statistics Problems and Bootstrap Estimation"
+author: "YOUR GROUP # LIST of studends who worked"
+date: "`r Sys.Date()`"
+output: html_notebook
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r packages, echo = FALSE, message = FALSE}
+# load the packages for graphing and data wrangling
+library(ggplot2)
+library(PASWR2)
+library(dplyr)
+library(lattice)
+library(boot)
+library(MASS)
+```
+
+
+Note: If you `Rmd` file submission knits you will receive total of **(5 points)**
+
+
+## 1. PROBLEM SOLVING PART
+
+**Problem 1 (5 pts) - similar to Pr. 5 / page 238 in text** 
+A box contains 30 consecutive balls numbered 1 to 30. If four numbers are drawn at random, how many ways are there for the largest number to be 19 and the smallest number to be 9?
+
+Use the Fundamental Principle of Counting! 
+
+**Solution:** 
+
+
+**YOUR CODE HERE:**
+
+```{r}
+
+```
+
+
+
+
+
+
+**Problem 2 (5 pts) - similar to Pr. 14 / page 239 in text** On a multiple-choice exam with **four** possible answers for each of the five questions, what is the probability that a student would get four or more correct answers just by guessing?
+
+Hint: Use the fact that $P(E ∩ F) = P(E) · P(F)$ for two independent event (generalized for more than events) Getting one answer correct is independent of another. 
+
+Also 
+
+$$P(at least 4) = P(exactly 4) + P(exactly 5)$$
+
+the last events are mutually exclusive so $P(A \cup B) = P(A) + P(B)$
+
+**YOUR CODE HERE:**
+
+```{r}
+
+
+```
+
+Out of 200 students who adopt this test taking approach how many are expected to get at least 4 correct? **Hint:** Use Binomial experiment settings to answer this questions.
+
+
+#### Solution: 
+
+
+
+**Problem 3 (5 pts) - similar to Pr. 44 page 243 in text**  Consider tossing **four** fair coins. There are 16 possible outcomes, e.g `HHHH,HHHT,HHTH,HTHH,THHH, ...` possible outcomes. Define `X` as the random variable “number of heads showing when four coins are tossed.” Obtain the mean and the variance of X. Simulate tossing three fair coins 10,000 times. Compute the simulated mean and variance of X. Are the simulated values within 2% of the theoretical answers?
+
+**Hint:** To find the theoretical values use `dbinom (x= , size = , prob =  )`
+
+
+**Solution:**
+
+**YOUR CODE HERE:**
+
+```{r}
+library(MASS)
+
+
+
+```
+
+**Problem 4 (5 pts) - similar to Pr. 11 / page 307 in text**
+
+Traffic volume is an important factor for determining the most cost-effective method to surface a road. Suppose that the average number of vehicles passing a certain point on a road is 5 every 60 seconds.
+
+(a) Find the probability that more than 12 cars will pass the point in a period of 3 minutes.
+(b) What is the probability that more than 100 cars pass the point in half an hour?
+
+Hint: Adjust the Poisson parameter $\lambda = 5$ every 60 seconds to `#` per every 3 minutes
+
+**YOUR CODE HERE:**
+
+```{r pr 11}
+
+
+
+```
+
+
+
+**Problem 5 (5 pts) - similar to Pr. 18 / page 308 in text**
+Suppose the percentage of drinks sold from a vending machine are 70% and 30% for soft drinks and bottled water, respectively.
+
+(a) What is the probability that on a randomly selected day, the first soft drink is the
+fourth drink sold?
+(b) Find the probability that exactly 4 out of 10 drinks sold is a soft drink.
+
+Hint: Let `X` = number of waters (failures) purchased before the first soft drink is purchased.
+Then, $X \sim Geo(0.70)$.
+
+**Solution:** 
+
+**YOUR CODE HERE:**:
+
+(a) 
+
+```{r pr. 18a}
+
+
+
+```
+
+(b) Let `X` = number of soft drinks sold. Then, $X \sim Bin(10, 0.70)$ and $P(X = 1) = 0$ since one has:
+
+
+```{r pr. 18b}
+
+
+```
+
+
+
+**Problem 6 (10 pts) - Exponential Distribution: Light Bulbs** If the life of a certain type of light bulb has an exponential distribution with a mean of 10 months, find
+
+(a) The probability that a randomly selected light bulb lasts between 6 and 15 months.
+(b) The 95th percentile of the distribution. 
+    How the probability of the light bulb to last more than 36 months compare to `0.05`?  
+(c) The probability that a light bulb that has lasted for 10 months will last more than 25 months.
+
+**Solution:**
+
+**YOUR CODE HERE:**
+
+```{r Ex. 4.17}
+
+
+```
+
+
+
+
+
+**Problem 7 (10 pts) - Pr. 8 page 400 ** A population has the following elements: 2, 5, 8, 12, 13 (**finite population**).
+
+(a) Enumerate all the samples of size 2 that can be drawn with and without replacement. (Hint: Use the `srs()` function from the `PASWR2` package)
+
+(b) Calculate the mean of the population.
+
+(c) Calculate the variance of the population.
+
+(d) Calculate the standard deviation of the population.
+
+(e) Calculate the mean of the sample mean, $E[X]$.
+
+(f) Calculate the variance of the sampled mean, $Var(\bar X)$
+
+(g) Calculate the standard deviation of the sample mean.
+
+(h) Calculate the mean of the sample variance, $E[S^2]$
+
+(i) Is the variance of $\bar X$ larger when sampling with or without replacement? Explain your answer
+
+
+**Solution:**
+
+**YOUR CODE HERE:**
+
+```{r}
+
+
+```
+
+
+
+**Problem 8 (10 pts) - similar to Pr. 10 / page 400 in text** 
+
+Use the data frame `WHEATUSA2004` from the `PASWR2` package; draw all samples of sizes 4,
+5, and 6; and calculate the mean of the means. What size provides the best approximation
+to the population mean? What is the variance of these means?
+
+**Solution:** The mean of the means for samples of size two, three, and four are all equal to `1148.7333`
+(the population mean). Consequently, all samples provide equal approximations to the population mean when taking all possible samples of a given sample size. The variance of the means, however, decreases with increasing sample size from `645755.872` for samples of size four, to `496720.646` for samples of size five, to `397374.397` for samples of size six.
+
+
+**Hint:** Use the `srs()` function from the `PASWR2` package to draw simple random samples.
+
+**YOUR CODE HERE:**
+
+```{r}
+
+
+
+```
+
+
+
+**Problem 9 (10 pts) - Pr. 16 / page 513 in text** 
+
+A group of engineers working with physicians in a research hospital is developing a
+new device to measure blood glucose levels. Based on measurements taken from patients
+in a previous study, the physicians assert that the new device provides blood glucose levels
+slightly higher than those provided by the old device. To corroborate their suspicion, `15`
+diabetic patients were randomly selected, and their blood glucose levels were measured with
+both the new and the old devices. The measurements, in `mg/100 ml`, appear in data frame `GLUCOSE` from the `PASWR2` package:
+
+(a) Are the samples independent? Why or why not?
+(b) If the blood glucose level is a normally distributed random variable, compute a 95%
+confidence interval for the mean differences of the population.
+(c) Use the results in (b) to decide whether or not the two devices give the same results.
+
+**Solution:** 
+
+(a)
+
+(b) **Hint:** look at the QQ-plot to see if normality is reasonable.
+
+**YOUR CODE HERE:**
+
+```{r}
+GLUCOSE <- GLUCOSE %>% mutate(DIFF = old-new) # create variable DIFF for the difference between old and new level
+
+head(GLUCOSE)
+
+ggplot(data = GLUCOSE, aes(sample = DIFF)) +
+  stat_qq() +
+  theme_bw()
+
+CI <- t.test(GLUCOSE$DIFF)$conf # use t-test since the sample size is small < 30
+CI
+```
+
+The 95% confidence interval for the mean differences of the population is `[−16.3614,−12.7586]`.
+
+(c) The confidence interval suggests that on average, the new device reports higher blood
+glucose levels than the old device.
+
+
+**Problem 10 (10 pts) - similar to Pr. 9 / page 511 in text** 
+
+A large company wants to estimate the proportion of its accounts that are paid on time.
+
+(a) How large a sample is needed to estimate the true proportion within 2% with a 95%
+confidence level?
+
+(b) Suppose 700 out of 800 accounts are paid on time. Construct 95% confidence intervals
+for the true proportion of accounts that are paid on time using an asymptotic confidence
+interval, an Agresti Coull confidence interval.
+
+Hint: Use the `nsize()` and `binom.confint()` from the `library(binom)`
+
+**Solution:**
+
+**YOUR CODE HERE:**
+
+```{r}
+library(binom)
+library(binom)
+#(a) 
+
+#(b)
+
+
+```
+
+
+
+
+**Problem 11 (10 pts) - Pr. 10 / page 511 in text**
+
+In a study conducted at **Appalachian State University**, students used digital oral
+thermometers to record their temperatures each day they came to class. A randomly
+selected day of student temperatures is provided in the following table and in the data
+frame `STATTEMPS`. Information is also provided with regard to subject gender and the hour
+of the day when the students’ temperatures were measured.
+
+Direction: load the data with `data(STATTEMPS)` having the `library(PASWR2)` loaded.
+
+**Hint:** 
+Use `t.test(temperature ~ gender, data = STATTEMPS, mu = 0, paired = FALSE)` the `x` ad `y` values are given with formula expression `formula = temperature ~ gender`. Then use the `$` access to obtain the confidence interval: 
+`CI <- t.test(temperature ~ gender, data = STATTEMPS, mu = 0, paired = FALSE)$conf` 
+
+(a) Construct a 95% confidence interval for the true average temperature difference between
+females and males. Does the interval contain the value zero? What does this suggest
+about gender temperature differences?
+
+
+(b) Construct a 95% confidence interval for the true average temperature difference between
+students taking their temperatures at 8 a.m. and students taking their temperatures
+at 9 a.m. Give a reason why one group appears to have a higher temperature reading.
+
+**Solution:** 
+
+**YOUR CODE HERE:**
+
+```{r}
+#(a)
+
+
+
+#(b)
+
+
+```
+
+A `95%` confidence interval for the true average difference between students taking their temperatures
+at `8` a.m. and students taking their temperatures at `9` a.m. is `[−2.4965,−0.2564]`.
+Note that this interval does not contain `0`, indicating that the there is evidence to suggest
+students in the `8` a.m. class have temperatures that are not as warm as the `9` a.m. class.
+One possible explanation is that students roll straight out of bed and into the `8` a.m. class.
+Consequently, their temperatures are closer to their sleeping temperatures which are lower
+than their waking temperatures.
+
+
+
+## 2. BRAINSTORMING PART: 
+
+### How do we form confidence intervals when normality assumtion is not reasonable and we have small sample size so the Central Limit Theorem does not apply?
+
+
+> Look for the answer with the following : 
+
+**Empirical bootstrap confidence interval for the mean.**
+
+For the data contained in a vector `x = c(36,30,37,43,42,43,43,46,40,42)` Estimate the mean `μ` of the underlying distribution and give an `90%` bootstrap confidence interval.
+
+```{r}
+x = c(36,30,37,43,42,43,43,46,40,42)
+qqnorm(x) # see if the data appear to follow normal distribution
+```
+
+> Data is not quite normal as it appears on the Q-Q PLOT!
+
+```{r}
+
+n = length(x)
+set.seed(25)  
+
+# sample mean
+xbar = mean(x)
+
+cat("data mean = ",xbar,'\n')
+
+nboot = 10000 # number of bootstrap samples 
+
+# Generate 10000 bootstrap samples, i.e. an n x 10000 array of random resamples from x.
+tmpdata = sample(x,n*nboot, replace=TRUE) # sample with replacement
+bootstrapsample = matrix(tmpdata, nrow=n, ncol=nboot)
+
+# Compute the sample mean xbar for each bootstrap sample
+xbarstar = colMeans(bootstrapsample)
+
+# Compute delta* for each bootstrap sample (difference between the original mean and the bootstrap sample mean)
+deltastar = xbarstar - xbar
+
+# Find the 0.1 and 0.9 quantiles for deltastar
+d = quantile(deltastar,c(0.05,0.95)) # for the 905 CI we need 90% area between the quantiles
+
+
+# Calculate the 90\% confidence interval for the mean.
+ci = xbar - c(d[2],d[1])
+ci
+```
+
+> We can achieve the same CI with the functions `boot()` and `boot.ci()` from the package `boot`
+
+```{r}
+
+MEAN <- function(data, i){
+  d <- data[i]
+   M <- mean(d)
+  }
+boot.obj <- boot(x, statistic = MEAN, 10000)
+CI <- boot.ci(boot.obj, conf = 0.90,type = "all") # all type of bootstrap intervals will be returned
+CI
+```
+
+
+
+
+## 3. BOOTSTRAP ESTIMATION PART
+
+> Review the problem below.
+
+**Pr. 30 / page 695 in text**
+
+The “Wisconsin Card Sorting Test” is widely used by psychiatrists, neurologists, and
+neuropsychologists with patients who have a brain injury, neurodegenerative disease, or a
+mental illness such as schizophrenia. Patients with any sort of frontal lobe lesion generally
+do poorly on the test. The data frame `WCST` and the following table contain the test scores
+from a group of 50 patients from the Virgen del Camino Hospital (Pamplona, Spain).
+
+(a) Use the function `eda()` from the `PASWR2` package to explore the data and decide if
+normality can be assumed. For details type in console `?eda`
+
+(b) What assumption(s) must be made to compute a `95%` confidence interval for the
+population mean?
+
+(c) Compute the confidence interval from (b).
+
+(d) Compute a 95% BCa bootstrap confidence interval for the mean test score.
+
+(e) Should you use the confidence interval reported in (c) or the confidence interval reported
+in (d)?
+
+**Solution:**
+
+(a) Assuming the variable score has a normal distribution is not reasonable.
+
+See the results of EDA analysis below:
+
+
+```{r}
+data(WCST)
+
+WCST %>% pull(score) %>% eda()
+```
+
+(b) In order to construct a `95%` confidence interval for the population mean, one assumes
+that the values in the variable score are taken from a **normal distribution**. Although this
+is not a reasonable assumption, the sample size might be sufficiently large to overcome the
+skewness in the parent population. Consequently, one might appeal to the **Central Limit Theorem** and claim that the sampling distribution of `X` is **approximately normal** due to
+the sample size `(50)`. In this problem, the skewness is quite severe, and one should not be
+overly confident in the final interval.
+
+(c) If we assume normality one has:
+
+```{r}
+# CI <- with(data = WCST, t.test(score)$conf) # 
+
+# or using piping
+CI <- WCST %>% pull(score) %>% t.test() %>% .$conf
+CI
+```
+ 
+(d) Use the `boot.ci()` nonparametric bootstrap CIs functions to obtain the bootstrap CI.
+
+
+```{r}
+library(boot) # use boot package
+MEAN <- function(data, i){
+  d <- data[i]
+   M <- mean(d)
+  }
+
+set.seed(13)
+
+B <- 10^4 - 1 # number of bootstrap samples
+
+b.obj <- boot(data = WCST$score, statistic = MEAN, R = B) # bootstrap object of class "boot" containing the output of a bootstrap calculation
+CIB <- boot.ci(b.obj, conf = 0.95, type = "bca")
+CIB
+```
+
+**Problem 12 (10 pts)** Set the seed to `23` (**group 1**), `45` (**group 2**), `67` (**group 3**), and `89` (**group 4**). Draw random sample of size `20` from exponential distribution with mean $\lambda = 4$ ($rate = \frac{1}{4}$). Produce all bootstrap CI with the function `boot.ci` (use type = "all").
+
+How many of them contain the true mean for the sampled distribution?
+
+**YOUR CODE HERE:**
+
+```{r}
+# set.seed(23) # uncomment by setting the value per your group designation
+
+```
+
+
+
+**EXTRA CREDIT (10 pts)** Set the seed to `23` (**group 1**), `45` (**group 2**), `67` (**group 3**), and `89` (**group 4**). Draw random sample of size `25` from $Bin(20,\frac{1}{5})$. Produce all bootstrap CI with the function `boot.ci` (use type = "all").
+
+How many of them contain the true mean for the  $Bin(20,\frac{1}{5})$?
+
+YOUR CODE HERE:
+```{r}
+#set.seed(23) # uncomment by setting the value per your group designation
+
+```
