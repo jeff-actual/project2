@@ -39,7 +39,7 @@ Use the Fundamental Principle of Counting!
 **YOUR CODE HERE:**
 
 ```{r}
-
+choose(9,2)
 ```
 
 
